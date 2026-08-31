@@ -164,7 +164,7 @@ function Chrome({ antes }: { antes: ReactNode }) {
       <SiteHeader config={cfg} />
       {antes}
       <SiteFooter config={cfg} />
-      <WhatsAppFloat numero={cfg.whatsapp} />
+      <WhatsAppFloat link={cfg.whatsapp_comunidade} />
     </>
   );
 }

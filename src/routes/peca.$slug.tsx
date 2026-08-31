@@ -17,6 +17,7 @@ import {
   formatPreco,
   imgSrc,
   rotuloCategoria,
+  textoParcelado,
   waMensagemPeca,
 } from "@/lib/loja";
 import { ProductCard } from "@/components/product-card";
@@ -95,7 +96,8 @@ function PecaPage() {
 
   const vendida = peca.status === "vendido";
   const imagens = peca.produto_imagens.length > 0 ? peca.produto_imagens : [{ url: "/exemplos/peca-1.jpg", ordem: 0 }];
-  const wa = waMensagemPeca(config.whatsapp, peca, "https://fluencycollection.com");
+  const origem = typeof window !== "undefined" ? window.location.origin : "";
+  const wa = waMensagemPeca(config.whatsapp, peca, origem);
 
   return (
     <main className="mx-auto max-w-6xl px-4 pb-24 pt-24 sm:px-6">
@@ -170,7 +172,7 @@ function PecaPage() {
           <div className="mt-6">
             <p className="text-3xl font-light text-white">{formatPreco(peca.preco)}</p>
             {peca.preco_parcelado_texto && (
-              <p className="mt-1 text-sm text-body">ou {peca.preco_parcelado_texto}</p>
+              <p className="mt-1 text-sm text-body">ou {textoParcelado(peca.preco_parcelado_texto)}</p>
             )}
           </div>
 
