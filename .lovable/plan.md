@@ -35,23 +35,28 @@ Login email + senha. Lista em tabela com miniatura, código, marca, nome, tamanh
 - `/peca/:slug`: galeria deslizável com miniaturas e zoom, dados da peça, botão grande de WhatsApp com mensagem pronta (código, marca, nome, link), bloco de confiança, estado "Peça vendida" com atalho para o catálogo, "Você também pode gostar" (4 peças), e SEO por peça com open graph usando a foto de capa.
 
 
-## Etapa 5 — Home (o espetáculo)
+## Etapa 5 — Home versão vendedora (sem 3D)
 
 Chrome fixo: topo transparente com blur ao rolar (logo, menu, botão WhatsApp), régua vertical de progresso à esquerda com porcentagem, botões sociais de vidro à direita, dica "↓ Role para ver".
 
-Seções na ordem: hero com cubo 3D de blocos de vidro que se desmonta e remonta (paralaxe no mouse, rolagem no celular); três cards de vidro com o central ativo; "Acabaram de chegar" (8 recentes); manifesto revelado palavra por palavra sobre fitas de luz; destaques; autenticidade com campo isométrico de cubos azuis; como funciona em 4 passos; fechamento com campo de estrelas e chamada para @fluencycollection.
+Seções na ordem, já com o conteúdo final: hero em **gradiente azul estático** com a assinatura tipográfica e os dois botões; três cards de vidro com o central ativo; "Acabaram de chegar" (8 recentes); manifesto revelado palavra por palavra; destaques; autenticidade; como funciona em 4 passos; fechamento com chamada para @fluencycollection.
 
-Movimento: transições geométricas (nunca fade simples), texto palavra a palavra, cards em cascata, ritmo lento, rolagem amortecida, brilho interno.
-
-Desempenho: 3D carregado de forma assíncrona atrás de um gradiente azul, geometria e resolução reduzidas no celular, e fallback em gradiente estático quando não houver WebGL ou o usuário pedir movimento reduzido.
+Movimento leve nesta fase: revelação de texto, cascata de cards, ritmo lento. Nada de 3D ainda.
 
 ## Etapa 6 — Páginas institucionais
 
-`/autenticidade` (processo em etapas numeradas, fundo de cubos azuis, com um espaço claramente marcado para você inserir depois o serviço de autenticação e o modelo de laudo — nenhum selo, parceria ou número inventado), `/como-comprar` (Pix ou cartão parcelado com juros, frete por conta do cliente, código de rastreio), `/sobre`, `/contato` (formulário que envia para o WhatsApp). Nenhuma página de devolução, prazo ou tabela de medidas.
+`/autenticidade` (processo em etapas numeradas, com um espaço claramente marcado para você inserir depois o serviço de autenticação e o modelo de laudo — nenhum selo, parceria ou número inventado), `/como-comprar` (Pix ou cartão parcelado com juros, frete por conta do cliente, código de rastreio), `/sobre`, `/contato` (formulário que envia para o WhatsApp). Nenhuma página de devolução, prazo ou tabela de medidas.
 
 ## Etapa 7 — Acabamento
 
-Botão flutuante de WhatsApp em todas as páginas, rodapé completo com espaço reservado para CNPJ e políticas, 404 na identidade, skeletons, estados vazios, acessibilidade básica e revisão final em tela de celular.
+Botão flutuante de WhatsApp em todas as páginas, rodapé completo com espaço reservado para CNPJ e políticas, 404 na identidade, skeletons, estados vazios, acessibilidade básica e revisão final em tela de celular. Aqui o site já está no ar vendendo.
+
+## Etapa 8 — O espetáculo 3D (por último)
+
+Troca do hero estático pela cena 3D: cubo de blocos de vidro que se desmonta e remonta, paralaxe no mouse e reação à rolagem no celular; campo isométrico de cubos azuis no fundo da seção de autenticidade e da página `/autenticidade`; campo de estrelas no fechamento; transições geométricas entre seções e rolagem amortecida.
+
+Desempenho: 3D carregado de forma assíncrona atrás do gradiente azul, geometria e resolução reduzidas no celular, e fallback no gradiente estático da etapa 5 quando não houver WebGL ou o usuário pedir movimento reduzido. O gradiente nunca é descartado — ele vira o fallback.
+
 
 ## Pendências suas
 
