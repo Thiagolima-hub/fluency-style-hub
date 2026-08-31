@@ -67,18 +67,6 @@ function AutenticidadePage() {
           </p>
         </div>
 
-        {/* Espaço reservado — conteúdo real será inserido pelo proprietário */}
-        <div className="mt-12 rounded-3xl border border-dashed border-cyan/30 bg-brand/5 p-8 text-center">
-          <ShieldCheck className="mx-auto h-6 w-6 text-cyan" />
-          <p className="mt-4 text-sm font-medium text-white">
-            Espaço reservado para o serviço de autenticação
-          </p>
-          <p className="mx-auto mt-2 max-w-[45ch] text-[13px] leading-relaxed text-body">
-            Aqui entrarão o nome do serviço de autenticação terceirizado e o modelo de laudo,
-            assim que a parceria for formalizada. Nenhum selo ou número é exibido antes disso.
-          </p>
-        </div>
-
         <div className="mt-14 text-center">
           <Link
             to="/pecas"
