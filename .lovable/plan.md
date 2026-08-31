@@ -13,20 +13,27 @@ O projeto já roda em **TanStack Start (React 19 + Vite 7 + TypeScript + Tailwin
 - Componente `<SplitTitle>` — recebe texto com `*trecho*` e renderiza o trecho em serifada itálica na mesma linha.
 - Primitivos: pílula de vidro, botão glass com brilho azul, card de vidro com grade blueprint, skeletons.
 
+## Sobre exportar os dados (resposta ao item 2)
+
+Sim, dá para sair. O Lovable Cloud roda sobre Supabase e permite exportar tudo: o banco em Cloud → Overview → Advanced settings → Export data, e as fotos baixadas direto da view de Storage. Depois é possível conectar um Supabase da sua conta e recriar o schema lá. Não existe um botão único de migração, mas não há aprisionamento — o código também sai por Git. Por isso seguimos com Lovable Cloud (sem contas externas, mais rápido de montar).
+
 ## Etapa 2 — Banco de dados e storage (Lovable Cloud)
 
 Tabelas `produtos`, `produto_imagens` (cascata), `configuracoes` (chave/valor: WhatsApp, textos da home, links) exatamente com os campos descritos. Bucket público `produtos`.
 
 RLS: leitura pública nas três tabelas; escrita apenas para usuário autenticado. Sem cadastro público — o usuário admin é criado manualmente por você no painel do Cloud.
 
-## Etapa 3 — Catálogo e página da peça (leve e rápido, sem 3D)
+Na mesma migração entram **6 peças de exemplo** (marcas variadas, uma vendida e uma reservada) para você conseguir testar catálogo, filtros e página da peça antes de cadastrar as reais. São descartáveis: apagar pelo painel.
+
+## Etapa 3 — Painel `/admin` (agora vem antes do catálogo)
+
+Login email + senha. Lista em tabela com miniatura, código, marca, nome, tamanho, preço e status; filtro por status e busca. Formulário "Nova peça" com todos os campos e slug automático (marca + nome + código). Upload múltiplo com preview, reordenação por arrastar e exclusão (primeira foto = capa). Botão rápido de status (disponível / reservado / vendido) direto na linha. Aba "Configurações" para WhatsApp e textos da home. Tudo confortável no celular.
+
+## Etapa 4 — Catálogo e página da peça (leve e rápido, sem 3D)
 
 - `/pecas`: grade 2 colunas no celular / 3 no desktop, card 4:5 com marca, nome, tamanho, preço e selo "PEÇA ÚNICA"; hover troca para a segunda foto; vendidas em preto e branco com selo "VENDIDO", sem WhatsApp, empurradas para o fim. Filtros de categoria, marca, tamanho e faixa de preço; ordenação por recentes / menor / maior preço; "carregar mais"; skeleton e estado vazio.
 - `/peca/:slug`: galeria deslizável com miniaturas e zoom, dados da peça, botão grande de WhatsApp com mensagem pronta (código, marca, nome, link), bloco de confiança, estado "Peça vendida" com atalho para o catálogo, "Você também pode gostar" (4 peças), e SEO por peça com open graph usando a foto de capa.
 
-## Etapa 4 — Painel `/admin`
-
-Login email + senha. Lista em tabela com miniatura, código, marca, nome, tamanho, preço e status; filtro por status e busca. Formulário "Nova peça" com todos os campos e slug automático (marca + nome + código). Upload múltiplo com preview, reordenação por arrastar e exclusão (primeira foto = capa). Botão rápido de status (disponível / reservado / vendido) direto na linha. Aba "Configurações" para WhatsApp e textos da home. Tudo confortável no celular.
 
 ## Etapa 5 — Home (o espetáculo)
 
