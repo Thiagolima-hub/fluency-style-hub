@@ -56,6 +56,12 @@ export function imgSrc(url: string | null | undefined) {
   return `/api/public/img/${url}`;
 }
 
+/** Remove o "ou" inicial do texto de parcelamento para não duplicar na tela. */
+export function textoParcelado(texto: string | null | undefined) {
+  if (!texto) return "";
+  return texto.replace(/^\s*ou\s+/i, "").trim();
+}
+
 export function waLink(numero: string, mensagem: string) {
   return `https://wa.me/${numero.replace(/\D/g, "")}?text=${encodeURIComponent(mensagem)}`;
 }
@@ -74,6 +80,7 @@ export function waMensagemPeca(
 
 export interface ConfigLoja {
   whatsapp: string;
+  whatsapp_comunidade: string;
   instagram: string;
   home_hero_titulo: string;
   home_hero_subtitulo: string;
@@ -82,7 +89,8 @@ export interface ConfigLoja {
 }
 
 export const CONFIG_PADRAO: ConfigLoja = {
-  whatsapp: "5511999999999",
+  whatsapp: "5511997035626",
+  whatsapp_comunidade: "https://chat.whatsapp.com/GJj8IcVqO3dLeM9wHY17sk",
   instagram: "fluencycollection",
   home_hero_titulo: "Luxo masculino, *autenticado*",
   home_hero_subtitulo:

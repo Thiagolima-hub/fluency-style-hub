@@ -139,3 +139,20 @@ export const salvarConfiguracao = createServerFn({ method: "POST" })
     if (error) throw new Error(error.message);
     return { ok: true };
   });
+
+/** Apaga TODAS as peças (usado pelo botão "Limpar peças de exemplo" no painel). */
+export const limparTodasPecas = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .handler(async ({ context }) => {
+    const { data: imgs } = await context.supabase.from("produto_imagens").select("url");
+    const arquivos = (imgs ?? [])
+      .map((i) => i.url)
+      .filter((u) => u && !u.startsWith("http") && !u.startsWith("/"));
+    if (arquivos.length > 0) await context.supabase.storage.from("produtos").remove(arquivos);
+    const { error } = await context.supabase
+      .from("produtos")
+      .delete()
+      .not("id", "is", null);
+    if (error) throw new Error(error.message);
+    return { ok: true };
+  });

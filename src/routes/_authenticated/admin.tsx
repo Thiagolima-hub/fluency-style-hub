@@ -13,6 +13,7 @@ import {
   Settings2,
   Shirt,
   Trash2,
+  Eraser,
   X,
 } from "lucide-react";
 import { toast } from "sonner";
@@ -20,6 +21,7 @@ import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import {
   apagarPeca,
+  limparTodasPecas,
   mudarStatus,
   registrarImagem,
   removerImagem,
@@ -38,7 +40,7 @@ import {
   type ConfigLoja,
 } from "@/lib/loja";
 import { cn } from "@/lib/utils";
-import { Logo } from "@/components/site-header";
+import { Logo } from "@/components/logo";
 
 export const Route = createFileRoute("/_authenticated/admin")({
   head: () => ({
@@ -167,6 +169,23 @@ function ListaPecas({
   const [busca, setBusca] = useState("");
   const [filtroStatus, setFiltroStatus] = useState("");
   const mudarStatusFn = useFn(mudarStatus);
+  const limparFn = useFn(limparTodasPecas);
+  const [limpando, setLimpando] = useState(false);
+
+  async function limparExemplos() {
+    if (!confirm("Apagar TODAS as peças cadastradas? Esta ação não pode ser desfeita.")) return;
+    setLimpando(true);
+    try {
+      await limparFn({});
+      queryClient.invalidateQueries({ queryKey: ["admin-produtos"] });
+      queryClient.invalidateQueries({ queryKey: ["produtos"] });
+      toast.success("Peças removidas.");
+    } catch {
+      toast.error("Não foi possível limpar as peças.");
+    } finally {
+      setLimpando(false);
+    }
+  }
   const apagarFn = useFn(apagarPeca);
 
   const filtradas = useMemo(() => {
@@ -225,6 +244,14 @@ function ListaPecas({
             <option key={s.valor} value={s.valor}>{s.rotulo}</option>
           ))}
         </select>
+        <button
+          onClick={limparExemplos}
+          disabled={limpando || pecas.length === 0}
+          className="flex h-10 items-center gap-2 rounded-full border border-destructive/40 px-4 text-[12px] text-destructive transition-colors hover:bg-destructive/10 disabled:opacity-40"
+        >
+          {limpando ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Eraser className="h-3.5 w-3.5" />}
+          Limpar peças de exemplo
+        </button>
       </div>
 
       {carregando ? (
@@ -582,6 +609,7 @@ function FormConfig({ config }: { config: ConfigLoja }) {
 
   const campos: { chave: keyof ConfigLoja; rotulo: string; multilinha?: boolean }[] = [
     { chave: "whatsapp", rotulo: "WhatsApp (só números, com DDI e DDD)" },
+    { chave: "whatsapp_comunidade", rotulo: "Link da comunidade no WhatsApp (botão flutuante)" },
     { chave: "instagram", rotulo: "Instagram (usuário, sem @)" },
     { chave: "home_hero_titulo", rotulo: "Título do hero (use *palavra* para destaque em itálico)" },
     { chave: "home_hero_subtitulo", rotulo: "Subtítulo do hero", multilinha: true },

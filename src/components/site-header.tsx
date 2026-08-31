@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import { Instagram, Menu, MessageCircle, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Logo } from "@/components/logo";
 import { waLink } from "@/lib/loja";
 import type { ConfigLoja } from "@/lib/loja";
 
@@ -10,32 +11,10 @@ const MENU = [
   { to: "/autenticidade", rotulo: "Autenticidade" },
   { to: "/como-comprar", rotulo: "Como comprar" },
   { to: "/sobre", rotulo: "Sobre" },
+  { to: "/contato", rotulo: "Contato" },
 ] as const;
 
-export function Logo({ className }: { className?: string }) {
-  return (
-    <Link to="/" className={cn("flex items-center gap-2", className)} aria-label="FLUENCY COLLECTION — início">
-      <span className="relative flex h-8 w-8 items-center justify-center">
-        <svg viewBox="0 0 32 32" className="h-8 w-8" aria-hidden="true">
-          <path
-            d="M4 24 A14 14 0 0 1 28 8"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2.5"
-            className="text-brand"
-          />
-          <text x="9" y="23" fontSize="15" fontWeight="700" fill="white" fontFamily="Space Grotesk, sans-serif">
-            F
-          </text>
-          <path d="M20 6 L16 16 L20 14 L16 26 L25 12 L20 14 L24 6 Z" fill="currentColor" className="text-brand" />
-        </svg>
-      </span>
-      <span className="text-[13px] font-medium tracking-[0.28em] text-white">
-        FLUENCY<span className="text-cyan">.</span>
-      </span>
-    </Link>
-  );
-}
+export { Logo };
 
 export function SiteHeader({ config }: { config: ConfigLoja }) {
   const [rolou, setRolou] = useState(false);
