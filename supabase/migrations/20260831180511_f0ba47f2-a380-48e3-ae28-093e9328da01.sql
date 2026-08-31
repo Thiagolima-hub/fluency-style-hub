@@ -1,0 +1,2 @@
+CREATE POLICY "produtos_bucket_auth_write" ON storage.objects FOR ALL TO authenticated USING (bucket_id = 'produtos') WITH CHECK (bucket_id = 'produtos');
+CREATE POLICY "produtos_bucket_public_read" ON storage.objects FOR SELECT TO anon USING (bucket_id = 'produtos');
