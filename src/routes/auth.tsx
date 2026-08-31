@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { supabase } from "@/integrations/supabase/client";
-import { Logo } from "@/components/site-header";
+import { Logo } from "@/components/logo";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/auth")({
