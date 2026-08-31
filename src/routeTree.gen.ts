@@ -10,33 +10,161 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as AutenticidadeRouteImport } from './routes/autenticidade'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as ComoComprarRouteImport } from './routes/como-comprar'
+import { Route as ContatoRouteImport } from './routes/contato'
+import { Route as PecasRouteImport } from './routes/pecas'
+import { Route as SobreRouteImport } from './routes/sobre'
+import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
+import { Route as PecaSlugRouteImport } from './routes/peca.$slug'
+import { Route as ApiPublicImgSplatRouteImport } from './routes/api/public/img/$'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AutenticidadeRoute = AutenticidadeRouteImport.update({
+  id: '/autenticidade',
+  path: '/autenticidade',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ComoComprarRoute = ComoComprarRouteImport.update({
+  id: '/como-comprar',
+  path: '/como-comprar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContatoRoute = ContatoRouteImport.update({
+  id: '/contato',
+  path: '/contato',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PecasRoute = PecasRouteImport.update({
+  id: '/pecas',
+  path: '/pecas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SobreRoute = SobreRouteImport.update({
+  id: '/sobre',
+  path: '/sobre',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const PecaSlugRoute = PecaSlugRouteImport.update({
+  id: '/peca/$slug',
+  path: '/peca/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicImgSplatRoute = ApiPublicImgSplatRouteImport.update({
+  id: '/api/public/img/$',
+  path: '/api/public/img/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/autenticidade': typeof AutenticidadeRoute
+  '/auth': typeof AuthRoute
+  '/como-comprar': typeof ComoComprarRoute
+  '/contato': typeof ContatoRoute
+  '/pecas': typeof PecasRoute
+  '/sobre': typeof SobreRoute
+  '/admin': typeof AuthenticatedAdminRoute
+  '/peca/$slug': typeof PecaSlugRoute
+  '/api/public/img/$': typeof ApiPublicImgSplatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/autenticidade': typeof AutenticidadeRoute
+  '/auth': typeof AuthRoute
+  '/como-comprar': typeof ComoComprarRoute
+  '/contato': typeof ContatoRoute
+  '/pecas': typeof PecasRoute
+  '/sobre': typeof SobreRoute
+  '/admin': typeof AuthenticatedAdminRoute
+  '/peca/$slug': typeof PecaSlugRoute
+  '/api/public/img/$': typeof ApiPublicImgSplatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/autenticidade': typeof AutenticidadeRoute
+  '/auth': typeof AuthRoute
+  '/como-comprar': typeof ComoComprarRoute
+  '/contato': typeof ContatoRoute
+  '/pecas': typeof PecasRoute
+  '/sobre': typeof SobreRoute
+  '/_authenticated/admin': typeof AuthenticatedAdminRoute
+  '/peca/$slug': typeof PecaSlugRoute
+  '/api/public/img/$': typeof ApiPublicImgSplatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/autenticidade'
+    | '/auth'
+    | '/como-comprar'
+    | '/contato'
+    | '/pecas'
+    | '/sobre'
+    | '/admin'
+    | '/peca/$slug'
+    | '/api/public/img/$'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/autenticidade'
+    | '/auth'
+    | '/como-comprar'
+    | '/contato'
+    | '/pecas'
+    | '/sobre'
+    | '/admin'
+    | '/peca/$slug'
+    | '/api/public/img/$'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/autenticidade'
+    | '/auth'
+    | '/como-comprar'
+    | '/contato'
+    | '/pecas'
+    | '/sobre'
+    | '/_authenticated/admin'
+    | '/peca/$slug'
+    | '/api/public/img/$'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AutenticidadeRoute: typeof AutenticidadeRoute
+  AuthRoute: typeof AuthRoute
+  ComoComprarRoute: typeof ComoComprarRoute
+  ContatoRoute: typeof ContatoRoute
+  PecasRoute: typeof PecasRoute
+  SobreRoute: typeof SobreRoute
+  PecaSlugRoute: typeof PecaSlugRoute
+  ApiPublicImgSplatRoute: typeof ApiPublicImgSplatRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +176,101 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/autenticidade': {
+      id: '/autenticidade'
+      path: '/autenticidade'
+      fullPath: '/autenticidade'
+      preLoaderRoute: typeof AutenticidadeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/como-comprar': {
+      id: '/como-comprar'
+      path: '/como-comprar'
+      fullPath: '/como-comprar'
+      preLoaderRoute: typeof ComoComprarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contato': {
+      id: '/contato'
+      path: '/contato'
+      fullPath: '/contato'
+      preLoaderRoute: typeof ContatoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pecas': {
+      id: '/pecas'
+      path: '/pecas'
+      fullPath: '/pecas'
+      preLoaderRoute: typeof PecasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sobre': {
+      id: '/sobre'
+      path: '/sobre'
+      fullPath: '/sobre'
+      preLoaderRoute: typeof SobreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/admin': {
+      id: '/_authenticated/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AuthenticatedAdminRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/peca/$slug': {
+      id: '/peca/$slug'
+      path: '/peca/$slug'
+      fullPath: '/peca/$slug'
+      preLoaderRoute: typeof PecaSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/img/$': {
+      id: '/api/public/img/$'
+      path: '/api/public/img/$'
+      fullPath: '/api/public/img/$'
+      preLoaderRoute: typeof ApiPublicImgSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAdminRoute: typeof AuthenticatedAdminRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAdminRoute: AuthenticatedAdminRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AutenticidadeRoute: AutenticidadeRoute,
+  AuthRoute: AuthRoute,
+  ComoComprarRoute: ComoComprarRoute,
+  ContatoRoute: ContatoRoute,
+  PecasRoute: PecasRoute,
+  SobreRoute: SobreRoute,
+  PecaSlugRoute: PecaSlugRoute,
+  ApiPublicImgSplatRoute: ApiPublicImgSplatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
