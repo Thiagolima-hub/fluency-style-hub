@@ -10,7 +10,7 @@ export const Route = createFileRoute("/autenticidade")({
       {
         name: "description",
         content:
-          "Como verificamos cada peça antes de colocar à venda: triagem de origem, inspeção física, materiais, etiquetas e códigos de série.",
+          "Toda peça da FLUENCY COLLECTION passa por verificação de autenticidade antes de entrar no acervo. Peça reprovada não é vendida.",
       },
       { property: "og:title", content: "Autenticidade — FLUENCY COLLECTION" },
       { property: "og:description", content: "Como verificamos cada peça antes de colocar à venda." },
@@ -18,34 +18,6 @@ export const Route = createFileRoute("/autenticidade")({
   }),
   component: AutenticidadePage,
 });
-
-const ETAPAS = [
-  {
-    titulo: "Triagem de origem",
-    texto:
-      "Antes de qualquer avaliação, investigamos de onde a peça vem: notas fiscais, comprovantes de compra e histórico do proprietário. Peça sem procedência clara não avança.",
-  },
-  {
-    titulo: "Inspeção física detalhada",
-    texto:
-      "Costuras, forros, ferragens, zíperes, botões e acabamentos são conferidos contra os padrões de fabricação de cada maison. Réplicas falham nos detalhes.",
-  },
-  {
-    titulo: "Etiquetas e códigos",
-    texto:
-      "Verificamos etiquetas internas, fontes tipográficas, códigos de série e date codes, cruzando com os padrões vigentes em cada período de produção.",
-  },
-  {
-    titulo: "Materiais e construção",
-    texto:
-      "Couro, canvas, metais e tecidos têm textura, peso e cheiro característicos. Avaliamos a construção da peça como um todo, não só a aparência.",
-  },
-  {
-    titulo: "Decisão final",
-    texto:
-      "Só entra no acervo o que passa por todas as etapas sem ressalva. Se resta qualquer dúvida, a peça é devolvida. Simples assim.",
-  },
-];
 
 function AutenticidadePage() {
   return (
@@ -59,30 +31,41 @@ function AutenticidadePage() {
         />
         <p className="mt-6 max-w-[45ch] text-[15px] leading-relaxed text-body">
           Comprar grife usada exige confiança. O medo de réplica é a objeção mais justa que
-          existe — e é por isso que nenhuma peça entra no acervo sem passar pelo nosso
-          processo de verificação.
+          existe. Por isso toda peça passa por verificação de autenticidade antes de entrar
+          no acervo — e peça reprovada não é vendida.
         </p>
 
-        <ol className="mt-16 space-y-4">
-          {ETAPAS.map((etapa, i) => (
-            <motion.li
-              key={etapa.titulo}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.55, delay: 0.05 * i }}
-              className="glass glow-soft rounded-3xl p-6 sm:p-8"
-            >
-              <div className="flex items-center gap-4">
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-cyan/40 text-sm text-cyan">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <h2 className="text-lg font-medium text-white">{etapa.titulo}</h2>
-              </div>
-              <p className="mt-4 max-w-[55ch] text-sm leading-relaxed text-body">{etapa.texto}</p>
-            </motion.li>
-          ))}
-        </ol>
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.55 }}
+          className="glass glow-soft mt-16 rounded-3xl p-6 sm:p-8"
+        >
+          <div className="flex items-center gap-4">
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-cyan/40 text-cyan">
+              <ShieldCheck className="h-5 w-5" />
+            </span>
+            <h2 className="text-lg font-medium text-white">Verificação antes do acervo</h2>
+          </div>
+          <p className="mt-4 max-w-[55ch] text-sm leading-relaxed text-body">
+            Nenhuma peça é anunciada sem passar por verificação de autenticidade. Se a peça
+            não é aprovada, ela não entra no acervo e não é vendida. Na dúvida sobre um item
+            específico, fale com a gente antes de comprar.
+          </p>
+        </motion.div>
+
+        {/* EDITAR AQUI — descrição do processo real de autenticação */}
+        <div className="mt-6 rounded-3xl border border-dashed border-cyan/40 bg-brand/5 p-8">
+          <p className="text-[11px] uppercase tracking-[0.3em] text-cyan">Editar aqui</p>
+          <p className="mt-3 text-sm font-medium text-white">
+            Espaço para descrever o processo real de autenticação
+          </p>
+          <p className="mt-2 max-w-[55ch] text-[13px] leading-relaxed text-body">
+            Este bloco está reservado. Assim que o processo oficial for definido, o texto
+            entra aqui. Até lá, nada de etapa, técnica ou ferramenta é descrito.
+          </p>
+        </div>
 
         {/* Espaço reservado — conteúdo real será inserido pelo proprietário */}
         <div className="mt-12 rounded-3xl border border-dashed border-cyan/30 bg-brand/5 p-8 text-center">
