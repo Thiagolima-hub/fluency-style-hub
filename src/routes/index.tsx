@@ -215,8 +215,8 @@ function HomePage() {
                 className="mt-3 text-3xl leading-tight text-white sm:text-4xl"
               />
               <p className="mt-5 max-w-[45ch] text-sm leading-relaxed text-body">
-                O medo de réplica é legítimo. Por isso cada peça passa por um processo de
-                verificação em etapas antes de aparecer aqui.
+                O medo de réplica é legítimo. Por isso toda peça passa por verificação de
+                autenticidade antes de entrar no acervo. Peça reprovada não é vendida.
               </p>
               <Link
                 to="/autenticidade"
@@ -225,26 +225,17 @@ function HomePage() {
                 Como verificamos <ArrowRight className="h-4 w-4 text-cyan" />
               </Link>
             </div>
-            <ol className="space-y-3">
-              {[
-                "Triagem: origem, notas e histórico da peça",
-                "Inspeção física: costuras, ferragens, etiquetas e códigos",
-                "Conferência de materiais e numeração de série",
-                "Só entra no acervo o que passa em todas as etapas",
-              ].map((passo, i) => (
-                <motion.li
-                  key={passo}
-                  {...aparecer}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className="glass flex items-start gap-4 rounded-2xl p-4"
-                >
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-cyan/40 text-[12px] text-cyan">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <p className="pt-1.5 text-sm text-white/85">{passo}</p>
-                </motion.li>
-              ))}
-            </ol>
+            <div className="glass glow-soft rounded-3xl p-8">
+              <p className="text-[11px] uppercase tracking-[0.3em] text-cyan">Compromisso</p>
+              <p className="mt-4 text-sm leading-relaxed text-white/85">
+                Toda peça passa por verificação de autenticidade antes de entrar no acervo.
+                O que não é aprovado não é vendido — sem exceção.
+              </p>
+              <p className="mt-4 text-sm leading-relaxed text-body">
+                Ficou com dúvida sobre uma peça específica? Chame no WhatsApp e a gente
+                responde item a item.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -339,8 +330,8 @@ function Palavra({
 }) {
   const opacity = useTransform(progress, [inicio, fim], [0.16, 1]);
   return (
-    <motion.span style={{ opacity }} className="me-[0.28em] inline-block text-white">
-      {children}
+    <motion.span style={{ opacity }} className="inline-block whitespace-pre text-white">
+      {children}{" "}
     </motion.span>
   );
 }

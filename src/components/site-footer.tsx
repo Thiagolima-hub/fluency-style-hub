@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
-import { Instagram, MessageCircle } from "lucide-react";
+import { Instagram, MessageCircle, Users } from "lucide-react";
 import { waLink, type ConfigLoja } from "@/lib/loja";
-import { Logo } from "@/components/site-header";
+import { Logo } from "@/components/logo";
 
 export function SiteFooter({ config }: { config: ConfigLoja }) {
   const wa = waLink(config.whatsapp, "Olá! Vim pelo site da FLUENCY COLLECTION.");
@@ -51,11 +51,19 @@ export function SiteFooter({ config }: { config: ConfigLoja }) {
             >
               <MessageCircle className="h-4 w-4 text-cyan" /> WhatsApp
             </a>
+            <a
+              href={config.whatsapp_comunidade}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-body transition-colors hover:text-white"
+            >
+              <Users className="h-4 w-4 text-cyan" /> Comunidade no WhatsApp
+            </a>
           </div>
         </div>
       </div>
       <div className="border-t border-white/8 px-4 py-5 text-center text-[11px] tracking-wide text-body">
-        <p>© {new Date().getFullYear()} FLUENCY COLLECTION · CNPJ e políticas em definição</p>
+        <p>© {new Date().getFullYear()} FLUENCY COLLECTION</p>
       </div>
     </footer>
   );

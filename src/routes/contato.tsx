@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { Instagram, MessageCircle, Send } from "lucide-react";
+import { Instagram, MessageCircle, Send, Users } from "lucide-react";
 import { configQuery } from "@/routes/__root";
 import { waLink } from "@/lib/loja";
 import { SplitTitle } from "@/components/split-title";
@@ -71,6 +71,20 @@ function ContatoPage() {
           <span>
             <span className="block text-[15px] font-medium text-white">Instagram</span>
             <span className="text-[13px] text-body">@{config.instagram}</span>
+          </span>
+        </a>
+        <a
+          href={config.whatsapp_comunidade}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="glass glow-soft group flex items-center gap-4 rounded-3xl p-6 transition-transform hover:scale-[1.02] sm:col-span-2"
+        >
+          <span className="glass flex h-12 w-12 items-center justify-center rounded-2xl">
+            <Users className="h-5 w-5 text-cyan" />
+          </span>
+          <span>
+            <span className="block text-[15px] font-medium text-white">Comunidade no WhatsApp</span>
+            <span className="text-[13px] text-body">Novidades e peças novas em primeira mão</span>
           </span>
         </a>
       </div>
